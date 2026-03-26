@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test VAK — Liceo Bicentenario Vicente Pérez Rosales</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0d14;--surface:#16161f;--surface2:#1e1e2e;
+  --border:rgba(255,255,255,0.08);--text:#f0f0f8;--muted:#7a7a9a;
+  --gold:#c9a94a;--gold2:#f0d080;
+  --accent1:#7c6ff7;--accent2:#f7516e;--accent3:#30d9a0;--yellow:#ffd166;
+  --r:18px;--rsm:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+.bg-orbs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.14;animation:drift 14s ease-in-out infinite alternate}
+.o1{width:550px;height:550px;background:var(--accent1);top:-180px;left:-120px;animation-duration:16s}
+.o2{width:420px;height:420px;background:var(--accent2);bottom:-120px;right:-80px;animation-duration:19s;animation-delay:-6s}
+.o3{width:300px;height:300px;background:var(--gold);top:40%;left:50%;animation-duration:12s;animation-delay:-4s;opacity:.08}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(50px,35px) scale(1.1)}}
+
+.page{position:relative;z-index:1;max-width:700px;margin:0 auto;padding:2rem 1.25rem 5rem}
+
+/* HEADER LICEO */
+.liceo-header{display:flex;align-items:center;gap:16px;padding:1.25rem 1.5rem;background:var(--surface);border:1px solid rgba(201,169,74,0.25);border-radius:var(--r);margin-bottom:2rem;position:relative;overflow:hidden}
+.liceo-header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2),transparent)}
+.liceo-info{flex:1;min-width:0}
+.liceo-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--gold2);letter-spacing:.04em;line-height:1.3}
+.liceo-sub{font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:.03em}
+.liceo-badge{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:50px;background:rgba(201,169,74,.12);border:1px solid rgba(201,169,74,.25);color:var(--gold)}
+
+/* INTRO */
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,111,247,.14);border:1px solid rgba(124,111,247,.3);color:#b3aeff;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:50px;margin-bottom:1.5rem}
+.hb-dot{width:7px;height:7px;background:var(--accent1);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,7vw,3.6rem);font-weight:800;line-height:1.05;margin-bottom:1rem;background:linear-gradient(140deg,#fff 0%,#b3aeff 45%,var(--accent3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:2rem;max-width:520px}
+
+.hero-img{width:100%;height:240px;border-radius:var(--r);overflow:hidden;margin-bottom:2rem;position:relative}
+.hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,transparent 55%)}
+.hero-img-cap{position:absolute;bottom:14px;left:18px;z-index:2;font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase}
+
+/* GLASS CARD */
+.glass{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:2rem;margin-bottom:1.25rem;position:relative;overflow:hidden}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(124,111,247,.5),transparent)}
+
+.lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.inp{width:100%;padding:13px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--rsm);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;transition:border-color .2s,box-shadow .2s;margin-bottom:1.25rem}
+.inp:focus{outline:none;border-color:var(--accent1);box-shadow:0 0 0 3px rgba(124,111,247,.15)}
+.inp::placeholder{color:var(--muted)}
+.inp.last{margin-bottom:1.5rem}
+.btn-go{width:100%;padding:15px 24px;background:linear-gradient(135deg,var(--accent1),#5248d8);border:none;border-radius:var(--rsm);color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 28px rgba(124,111,247,.4)}
+.btn-go:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(124,111,247,.5)}
+.btn-go:active{transform:translateY(0)}
+
+/* PROGRESO */
+.prog-wrap{margin-bottom:1.5rem}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.prog-lbl{font-size:13px;color:var(--muted);font-weight:500}
+.prog-pct{font-size:13px;font-weight:700;color:var(--accent1)}
+.prog-track{height:4px;background:var(--surface2);border-radius:10px;overflow:hidden}
+.prog-fill{height:4px;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent3));transition:width .5s cubic-bezier(.4,0,.2,1)}
+
+/* IMAGEN PREGUNTA */
+.q-img-box{margin:-2rem -2rem 1.5rem;width:calc(100% + 4rem);height:200px;position:relative;overflow:hidden;border-radius:var(--r) var(--r) 0 0}
+.q-img-box img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.glass:hover .q-img-box img{transform:scale(1.03)}
+.q-img-box::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 35%,var(--surface) 100%)}
+.q-badge{position:absolute;top:14px;left:14px;z-index:2;background:rgba(13,13,20,.72);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:50px}
+
+.q-text{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;line-height:1.45;color:var(--text);margin-bottom:1.25rem}
+
+.opt{display:flex;align-items:center;gap:13px;padding:13px 15px;margin-bottom:9px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--rsm);cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.opt::before{content:'';position:absolute;inset:0;opacity:0;background:linear-gradient(135deg,rgba(124,111,247,.1),rgba(48,217,160,.06));transition:opacity .2s}
+.opt:hover{border-color:rgba(124,111,247,.35);transform:translateX(4px)}
+.opt:hover::before{opacity:1}
+.opt.sel{border-color:var(--accent1);background:rgba(124,111,247,.13);transform:translateX(7px);box-shadow:-3px 0 0 var(--accent1)}
+.opt.sel::before{opacity:1}
+.opt-l{width:32px;height:32px;flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);transition:all .2s}
+.opt.sel .opt-l{background:var(--accent1);border-color:var(--accent1);color:#fff}
+.opt-t{font-size:14px;color:#c0c0dc;line-height:1.5;position:relative;z-index:1}
+.opt.sel .opt-t{color:var(--text)}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:slideUp .32s ease forwards}
+
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem;gap:10px}
+.btn-prev{padding:11px 20px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--rsm);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:all .15s}
+.btn-prev:hover{color:var(--text);border-color:rgba(255,255,255,.18)}
+.btn-prev:disabled{opacity:.3;cursor:default}
+.btn-nxt{padding:11px 24px;background:linear-gradient(135deg,var(--accent1),#5248d8);border:none;border-radius:var(--rsm);color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .18s;box-shadow:0 4px 18px rgba(124,111,247,.35)}
+.btn-nxt:hover{transform:translateY(-2px);box-shadow:0 7px 24px rgba(124,111,247,.45)}
+.btn-nxt:disabled{opacity:.35;cursor:default;transform:none;box-shadow:none}
+
+/* RESULTADO */
+.res-hero{width:100%;height:280px;border-radius:var(--r);overflow:hidden;position:relative;margin-bottom:1.5rem}
+.res-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.res-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.75rem;background:linear-gradient(to top,rgba(13,13,20,.96) 0%,rgba(13,13,20,.3) 50%,transparent 100%)}
+.res-chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border-radius:50px;margin-bottom:10px;width:fit-content}
+.cv{background:rgba(124,111,247,.25);color:#b3aeff;border:1px solid rgba(124,111,247,.4)}
+.ca{background:rgba(255,209,102,.18);color:var(--yellow);border:1px solid rgba(255,209,102,.4)}
+.ck{background:rgba(48,217,160,.18);color:var(--accent3);border:1px solid rgba(48,217,160,.4)}
+.res-big{font-family:'Syne',sans-serif;font-size:2.1rem;font-weight:800;line-height:1.1;color:#fff}
+.res-who{font-size:13px;color:rgba(255,255,255,.45);margin-top:5px}
+
+/* MARCA LICEO EN RESULTADO */
+.res-liceo-mark{display:flex;align-items:center;gap:10px;padding:1rem 1.25rem;background:var(--surface);border:1px solid rgba(201,169,74,.2);border-radius:var(--r);margin-bottom:1rem}
+.res-liceo-mark span{font-size:12px;color:var(--gold);font-weight:500;letter-spacing:.02em}
+
+.desc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1rem;position:relative;overflow:hidden}
+.desc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.desc-card.dv::before{background:linear-gradient(90deg,var(--accent1),transparent)}
+.desc-card.da::before{background:linear-gradient(90deg,var(--yellow),transparent)}
+.desc-card.dk::before{background:linear-gradient(90deg,var(--accent3),transparent)}
+.desc-txt{font-size:15px;color:#c0c0dc;line-height:1.75}
+
+.bars-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1rem}
+.card-h{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.br{margin-bottom:15px}
+.br:last-child{margin-bottom:0}
+.br-top{display:flex;justify-content:space-between;margin-bottom:6px}
+.br-lbl{font-size:13px;font-weight:600;color:var(--text)}
+.br-val{font-size:13px;font-weight:700}
+.br-track{height:7px;background:var(--surface2);border-radius:10px;overflow:hidden}
+.br-fill{height:7px;border-radius:10px;transition:width .9s cubic-bezier(.4,0,.2,1)}
+.bfv{background:linear-gradient(90deg,var(--accent1),#b3aeff)}
+.bfa{background:linear-gradient(90deg,#f0952a,var(--yellow))}
+.bfk{background:linear-gradient(90deg,#0fba82,var(--accent3))}
+
+.tips-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1rem}
+.tip-row{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--border)}
+.tip-row:last-child{border-bottom:none;padding-bottom:0}
+.tip-dot{width:6px;height:6px;border-radius:50%;margin-top:7px;flex-shrink:0}
+.tdv{background:var(--accent1)}.tda{background:var(--yellow)}.tdk{background:var(--accent3)}
+.tip-t{font-size:14px;color:#c0c0dc;line-height:1.55}
+
+.save-box{text-align:center;padding:10px 0}
+.s-ok{font-size:14px;color:var(--accent3);font-weight:600}
+.s-err{font-size:13px;color:var(--accent2)}
+.s-wait{font-size:14px;color:var(--muted)}
+.spinner{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.12);border-top-color:var(--accent1);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.config-note{background:rgba(255,209,102,.07);border:1px solid rgba(255,209,102,.22);border-radius:var(--rsm);padding:.9rem;font-size:13px;color:var(--yellow);line-height:1.6;margin-bottom:1.25rem;display:none}
+.btn-reset{width:100%;padding:14px 24px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--rsm);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:all .15s;margin-top:1rem}
+.btn-reset:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.footer p{font-size:11px;color:var(--muted);letter-spacing:.04em}
+
+@media(max-width:500px){.hero-title{font-size:2rem}.q-text{font-size:16px}.nav{flex-wrap:wrap}.btn-nxt{flex:1}.liceo-badge{display:none}}
+</style>
+</head>
+<body>
+<div class="bg-orbs">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+  <!-- ======= INICIO ======= -->
+  <div id="screen-inicio">
+
+    <div class="liceo-header">
+      <div class="liceo-info">
+        <div class="liceo-name">Liceo Bicentenario Vicente Pérez Rosales</div>
+        <div class="liceo-sub">Docente: Marcia Martínez Arias</div>
+      </div>
+      <span class="liceo-badge">VAK Test</span>
+    </div>
+
+    <div class="hero-badge"><span class="hb-dot"></span>Test de Estilos de Aprendizaje</div>
+    <h1 class="hero-title">¿Cómo<br>aprendes tú?</h1>
+    <p class="hero-sub">Descubre si eres Visual, Auditivo o Kinestésico con este test de 12 preguntas diseñado para estudiantes.</p>
+
+    <div class="glass">
+      <label class="lbl" for="inp-nombre">Tu nombre completo</label>
+      <input class="inp" id="inp-nombre" type="text" placeholder="Escribe tu nombre…" autocomplete="off">
+      <label class="lbl" for="inp-curso">Curso</label>
+      <input class="inp last" id="inp-curso" type="text" placeholder="Ej: 2°A, 3°B…" autocomplete="off">
+      <button class="btn-go" onclick="iniciar()">Comenzar Test →</button>
+    </div>
+
+  </div><!-- /screen-inicio -->
+
+  <!-- ======= TEST ======= -->
+  <div id="screen-test" style="display:none">
+
+    <div class="glass anim" id="q-card">
+
+      <div class="prog-wrap">
+        <div class="prog-top">
+          <span class="prog-lbl" id="prog-txt">Pregunta 1 de 12</span>
+          <span class="prog-pct" id="prog-pct">0%</span>
+        </div>
+        <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      </div>
+
+      <p class="q-text" id="q-text"></p>
+
+      <div id="opts-wrap"></div>
+
+      <div class="nav">
+        <button class="btn-prev" id="btn-prev" onclick="prev()" disabled>← Anterior</button>
+        <button class="btn-nxt" id="btn-nxt" onclick="next()" disabled>Siguiente →</button>
+      </div>
+
+    </div>
+
+  </div><!-- /screen-test -->
+
+  <!-- ======= RESULTADO ======= -->
+  <div id="screen-res" style="display:none"></div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Liceo Bicentenario Vicente Pérez Rosales · Test VAK</p>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+const PREGUNTAS = [
+  {
+    t: "Cuando aprendes algo nuevo, prefieres…",
+    opts: [
+      {l:"Ver diagramas, esquemas o imágenes",c:"V"},
+      {l:"Escuchar explicaciones o grabaciones",c:"A"},
+      {l:"Practicarlo tú mismo con actividades",c:"K"}
+    ]
+  },
+  {
+    t: "Cuando recuerdas información, normalmente…",
+    opts: [
+      {l:"Visualizas páginas o colores del cuaderno",c:"V"},
+      {l:"Escuchas la voz del profesor en tu cabeza",c:"A"},
+      {l:"Recuerdas lo que hiciste o sentiste",c:"K"}
+    ]
+  },
+  {
+    t: "Para estudiar para un examen, generalmente…",
+    opts: [
+      {l:"Haces mapas conceptuales o resúmenes visuales",c:"V"},
+      {l:"Repites en voz alta o grabas y escuchas",c:"A"},
+      {l:"Practicas ejercicios y casos reales",c:"K"}
+    ]
+  },
+  {
+    t: "Cuando alguien te explica cómo llegar a un lugar, prefieres…",
+    opts: [
+      {l:"Ver un mapa o que te lo dibujen",c:"V"},
+      {l:"Que te lo expliquen paso a paso de palabra",c:"A"},
+      {l:"Caminar y descubrirlo tú mismo",c:"K"}
+    ]
+  },
+  {
+    t: "En clases, lo que más te ayuda a entender es…",
+    opts: [
+      {l:"El pizarrón, presentaciones o videos",c:"V"},
+      {l:"Las explicaciones orales y debates",c:"A"},
+      {l:"Experimentos, talleres o trabajos en grupo",c:"K"}
+    ]
+  },
+  {
+    t: "Cuando lees un libro de texto, lo que más te llama la atención es…",
+    opts: [
+      {l:"Las imágenes, gráficos y tablas",c:"V"},
+      {l:"Leerlo en voz alta para entender mejor",c:"A"},
+      {l:"Los ejemplos prácticos y ejercicios",c:"K"}
+    ]
+  },
+  {
+    t: "Al estar en una reunión larga, tiendes a…",
+    opts: [
+      {l:"Tomar apuntes o dibujar esquemas",c:"V"},
+      {l:"Escuchar con atención sin distraerte",c:"A"},
+      {l:"Moverte, gesticular o hacer algo con las manos",c:"K"}
+    ]
+  },
+  {
+    t: "Para aprender un deporte o habilidad nueva, prefieres…",
+    opts: [
+      {l:"Ver videos o demostraciones",c:"V"},
+      {l:"Que alguien te explique cada movimiento",c:"A"},
+      {l:"Lanzarte a intentarlo directamente",c:"K"}
+    ]
+  },
+  {
+    t: "Cuando resuelves un problema difícil, sueles…",
+    opts: [
+      {l:"Dibujarlo o escribirlo en papel",c:"V"},
+      {l:"Pensar en voz alta o hablar con alguien",c:"A"},
+      {l:"Probar distintas soluciones con la práctica",c:"K"}
+    ]
+  },
+  {
+    t: "Tu forma de tomar apuntes en clases es…",
+    opts: [
+      {l:"Usar colores, destacadores y diagramas",c:"V"},
+      {l:"Escribir lo que dice el profesor textualmente",c:"A"},
+      {l:"Poca escritura, aprender haciendo",c:"K"}
+    ]
+  },
+  {
+    t: "Cuando te aburres en clases, tiendes a…",
+    opts: [
+      {l:"Dibujar o mirar por la ventana",c:"V"},
+      {l:"Hablar con un compañero o tararear",c:"A"},
+      {l:"Moverte, jugar con objetos o levantarte",c:"K"}
+    ]
+  },
+  {
+    t: "Cuando alguien te explica algo y no entiendes, pides que…",
+    opts: [
+      {l:"Te lo muestre con un ejemplo visual",c:"V"},
+      {l:"Te lo explique de otra manera con palabras",c:"A"},
+      {l:"Te deje practicarlo tú mismo",c:"K"}
+    ]
+  }
+];
+
+const INFO = {
+  V:{
+    label:"Visual",
+    chip:"cv",
+    color:"var(--accent1)",
+    desc:"Aprendes mejor cuando la información se presenta de forma visual. Los mapas conceptuales, esquemas, colores y videos son tus aliados. Procesas el mundo a través de imágenes y recuerdas mejor lo que ves.",
+    tips:[
+      "Usa mapas mentales y esquemas con colores.",
+      "Subraya y usa destacadores en diferentes tonos.",
+      "Convierte listas en diagramas o infografías.",
+      "Siéntate cerca del pizarrón o pantalla.",
+      "Agrega dibujos o íconos a tus apuntes."
+    ]
+  },
+  A:{
+    label:"Auditivo",
+    chip:"ca",
+    color:"var(--yellow)",
+    desc:"Aprendes mejor escuchando y hablando. Las explicaciones orales, los debates y las grabaciones son tu fuente principal de aprendizaje. Tienes buena memoria para lo que escuchas y procesas ideas hablando.",
+    tips:[
+      "Graba explicaciones y escúchalas después.",
+      "Lee en voz alta cuando estudias.",
+      "Forma grupos de estudio para debatir.",
+      "Explícale lo que aprendiste a alguien más.",
+      "Escucha música instrumental mientras estudias."
+    ]
+  },
+  K:{
+    label:"Kinestésico",
+    chip:"ck",
+    color:"var(--accent3)",
+    desc:"Aprendes mejor con la práctica y el movimiento. Necesitas experimentar, tocar y hacer para que el aprendizaje quede. Eres un aprendiz activo que retiene mejor cuando se involucra corporalmente.",
+    tips:[
+      "Haz ejercicios y actividades prácticas.",
+      "Toma descansos activos mientras estudias.",
+      "Usa tarjetas (flashcards) y manipúlalas.",
+      "Relaciona lo aprendido con experiencias reales.",
+      "Muévete mientras repasas (caminar y estudiar)."
+    ]
+  }
+};
+
+let nombre="", curso="", respuestas=[], actual=0;
+
+function iniciar(){
+  nombre = document.getElementById('inp-nombre').value.trim();
+  curso  = document.getElementById('inp-curso').value.trim();
+  if(!nombre){alert('Por favor escribe tu nombre primero.');return;}
+  document.getElementById('screen-inicio').style.display='none';
+  document.getElementById('screen-test').style.display='block';
+  respuestas = Array(PREGUNTAS.length).fill(null);
+  renderQ();
+}
+
+function renderQ(){
+  const q = PREGUNTAS[actual];
+  document.getElementById('prog-txt').textContent = `Pregunta ${actual+1} de ${PREGUNTAS.length}`;
+  const pct = Math.round(actual/PREGUNTAS.length*100);
+  document.getElementById('prog-pct').textContent = pct+'%';
+  document.getElementById('prog-fill').style.width = pct+'%';
+  document.getElementById('q-text').textContent = q.t;
+
+  const wrap = document.getElementById('opts-wrap');
+  wrap.innerHTML='';
+  const letras=['A','B','C'];
+  q.opts.forEach((o,i)=>{
+    const d=document.createElement('div');
+    d.className='opt'+(respuestas[actual]===o.c?' sel':'');
+    d.innerHTML=`<div class="opt-l">${letras[i]}</div><div class="opt-t">${o.l}</div>`;
+    d.onclick=()=>{
+      respuestas[actual]=o.c;
+      document.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
+      d.classList.add('sel');
+      document.getElementById('btn-nxt').disabled=false;
+    };
+    wrap.appendChild(d);
+  });
+
+  document.getElementById('btn-prev').disabled = actual===0;
+  document.getElementById('btn-nxt').disabled  = respuestas[actual]===null;
+  document.getElementById('btn-nxt').textContent = actual===PREGUNTAS.length-1?'Ver resultado →':'Siguiente →';
+
+  const card=document.getElementById('q-card');
+  card.classList.remove('anim');
+  void card.offsetWidth;
+  card.classList.add('anim');
+}
+
+function next(){
+  if(respuestas[actual]===null)return;
+  if(actual<PREGUNTAS.length-1){actual++;renderQ();}
+  else mostrarResultado();
+}
+function prev(){if(actual>0){actual--;renderQ();}}
+
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbx3ynEpR_CEoaG55DQRcnDE3RQvoDO9PHJeKA0K67obEWwXSiEvsPQ0eNHYwjWPYgK4hw/exec";
+
+function mostrarResultado(){
+  const cnt={V:0,A:0,K:0};
+  respuestas.forEach(r=>{if(r)cnt[r]++;});
+  const total=PREGUNTAS.length;
+  let dom='V';
+  if(cnt.A>=cnt[dom])dom='A';
+  if(cnt.K>=cnt[dom])dom='K';
+  const info=INFO[dom];
+
+  document.getElementById('screen-test').style.display='none';
+  const el=document.getElementById('screen-res');
+  el.style.display='block';
+
+  const tipRows=info.tips.map(t=>`<div class="tip-row"><div class="tip-dot td${dom.toLowerCase()}"></div><div class="tip-t">${t}</div></div>`).join('');
+  const pctV=Math.round(cnt.V/total*100), pctA=Math.round(cnt.A/total*100), pctK=Math.round(cnt.K/total*100);
+
+  el.innerHTML=`
+    <div class="res-hero">
+      <div class="res-overlay">
+        <span class="res-chip ${info.chip}">${info.label}</span>
+        <div class="res-big">Eres ${info.label}</div>
+        <div class="res-who">${nombre}${curso?' · '+curso:''}</div>
+      </div>
+    </div>
+
+    <div class="res-liceo-mark">
+      <span>Liceo Bicentenario Vicente Pérez Rosales · Docente: Marcia Martínez Arias</span>
+    </div>
+
+    <div class="desc-card d${dom.toLowerCase()}">
+      <p class="desc-txt">${info.desc}</p>
+    </div>
+
+    <div class="bars-card">
+      <div class="card-h">Distribución de respuestas</div>
+      <div class="br">
+        <div class="br-top"><span class="br-lbl">Visual</span><span class="br-val" style="color:var(--accent1)">${cnt.V} pts · ${pctV}%</span></div>
+        <div class="br-track"><div class="br-fill bfv" style="width:${pctV}%"></div></div>
+      </div>
+      <div class="br">
+        <div class="br-top"><span class="br-lbl">Auditivo</span><span class="br-val" style="color:var(--yellow)">${cnt.A} pts · ${pctA}%</span></div>
+        <div class="br-track"><div class="br-fill bfa" style="width:${pctA}%"></div></div>
+      </div>
+      <div class="br">
+        <div class="br-top"><span class="br-lbl">Kinestésico</span><span class="br-val" style="color:var(--accent3)">${cnt.K} pts · ${pctK}%</span></div>
+        <div class="br-track"><div class="br-fill bfk" style="width:${pctK}%"></div></div>
+      </div>
+    </div>
+
+    <div class="tips-card">
+      <div class="card-h">Estrategias recomendadas para ti</div>
+      ${tipRows}
+    </div>
+
+    <div class="save-box" id="save-box">
+      <span class="s-wait"><span class="spinner"></span>Guardando en registro…</span>
+    </div>
+
+    <button class="btn-reset" onclick="reiniciar()">↺ Volver a hacer el test</button>
+  `;
+
+  el.scrollIntoView({behavior:'smooth'});
+
+  // Enviar datos a Google Sheets
+  fetch(SHEETS_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      nombre: nombre,
+      curso: curso,
+      visual: cnt.V,
+      auditivo: cnt.A,
+      kinestesico: cnt.K,
+      resultado: info.label
+    })
+  })
+  .then(() => {
+    document.getElementById('save-box').innerHTML =
+      '<span class="s-ok">✓ Resultado guardado en el registro de la docente</span>';
+  })
+  .catch(() => {
+    document.getElementById('save-box').innerHTML =
+      '<span class="s-err">⚠ No se pudo guardar. Verifica tu conexión.</span>';
+  });
+}
+
+function reiniciar(){
+  document.getElementById('screen-res').style.display='none';
+  document.getElementById('screen-inicio').style.display='block';
+  document.getElementById('inp-nombre').value='';
+  document.getElementById('inp-curso').value='';
+  respuestas=[];actual=0;
+}
+</script>
+</body>
+</html>
