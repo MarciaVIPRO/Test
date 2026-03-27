@@ -177,7 +177,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
     <div class="hero-badge"><span class="hb-dot"></span>Test de Estilos de Aprendizaje</div>
     <h1 class="hero-title">¿Cómo<br>aprendes tú?</h1>
-    <p class="hero-sub">Descubre si eres Visual, Auditivo o Kinestésico con este test de 12 preguntas diseñado para estudiantes.</p>
+    <p class="hero-sub">Descubre si eres Visual, Auditivo o Kinestésico con este test de 15 preguntas diseñado para estudiantes.</p>
 
     <div class="glass">
       <label class="lbl" for="inp-nombre">Tu nombre completo</label>
@@ -230,97 +230,121 @@ const PREGUNTAS = [
   {
     t: "Cuando aprendes algo nuevo, prefieres…",
     opts: [
-      {l:"Ver diagramas, esquemas o imágenes",c:"V"},
-      {l:"Escuchar explicaciones o grabaciones",c:"A"},
-      {l:"Practicarlo tú mismo con actividades",c:"K"}
+      {l:"Ver dibujos, fotos o videos sobre el tema",c:"V"},
+      {l:"Escuchar al profesor o una explicación en audio",c:"A"},
+      {l:"Hacerlo tú mismo, tocarlo o practicarlo",c:"K"}
     ]
   },
   {
-    t: "Cuando recuerdas información, normalmente…",
+    t: "Cuando tienes que recordar algo estudiado, generalmente…",
     opts: [
-      {l:"Visualizas páginas o colores del cuaderno",c:"V"},
-      {l:"Escuchas la voz del profesor en tu cabeza",c:"A"},
-      {l:"Recuerdas lo que hiciste o sentiste",c:"K"}
+      {l:"Te imaginas cómo se veía en el cuaderno o en el pizarrón",c:"V"},
+      {l:"Recuerdas cómo sonaba la explicación",c:"A"},
+      {l:"Recuerdas algo que hiciste o viviste relacionado con eso",c:"K"}
     ]
   },
   {
-    t: "Para estudiar para un examen, generalmente…",
+    t: "Para estudiar para una prueba, normalmente…",
     opts: [
-      {l:"Haces mapas conceptuales o resúmenes visuales",c:"V"},
-      {l:"Repites en voz alta o grabas y escuchas",c:"A"},
-      {l:"Practicas ejercicios y casos reales",c:"K"}
+      {l:"Haces esquemas, dibujos o resúmenes con colores",c:"V"},
+      {l:"Lees en voz alta o te explicas el tema a ti mismo",c:"A"},
+      {l:"Practicas con ejercicios o ejemplos reales",c:"K"}
     ]
   },
   {
-    t: "Cuando alguien te explica cómo llegar a un lugar, prefieres…",
+    t: "Si alguien te explica cómo llegar a un lugar, prefieres…",
     opts: [
-      {l:"Ver un mapa o que te lo dibujen",c:"V"},
-      {l:"Que te lo expliquen paso a paso de palabra",c:"A"},
-      {l:"Caminar y descubrirlo tú mismo",c:"K"}
+      {l:"Ver un mapa o que te hagan un dibujo",c:"V"},
+      {l:"Que te lo expliquen con palabras, paso a paso",c:"A"},
+      {l:"Ir caminando y descubrirlo tú mismo",c:"K"}
     ]
   },
   {
     t: "En clases, lo que más te ayuda a entender es…",
     opts: [
-      {l:"El pizarrón, presentaciones o videos",c:"V"},
-      {l:"Las explicaciones orales y debates",c:"A"},
-      {l:"Experimentos, talleres o trabajos en grupo",c:"K"}
+      {l:"Ver imágenes, videos o lo que el profesor escribe en el pizarrón",c:"V"},
+      {l:"Escuchar al profesor explicar o participar en conversaciones",c:"A"},
+      {l:"Hacer actividades, experimentos o trabajos con los compañeros",c:"K"}
     ]
   },
   {
-    t: "Cuando lees un libro de texto, lo que más te llama la atención es…",
+    t: "Cuando lees algo en el libro o una guía, lo que más te ayuda es…",
     opts: [
-      {l:"Las imágenes, gráficos y tablas",c:"V"},
-      {l:"Leerlo en voz alta para entender mejor",c:"A"},
-      {l:"Los ejemplos prácticos y ejercicios",c:"K"}
+      {l:"Que tenga imágenes, gráficos o tablas",c:"V"},
+      {l:"Leer en voz alta para entender mejor",c:"A"},
+      {l:"Que tenga ejemplos o ejercicios para hacer",c:"K"}
     ]
   },
   {
-    t: "Al estar en una reunión larga, tiendes a…",
+    t: "Cuando llevas mucho rato sentado en clases, tiendes a…",
     opts: [
-      {l:"Tomar apuntes o dibujar esquemas",c:"V"},
-      {l:"Escuchar con atención sin distraerte",c:"A"},
-      {l:"Moverte, gesticular o hacer algo con las manos",c:"K"}
+      {l:"Dibujar en el cuaderno o mirar por la ventana",c:"V"},
+      {l:"Hablar bajito con un compañero o canturrearte algo",c:"A"},
+      {l:"Moverte en la silla, jugar con algo o levantarte",c:"K"}
     ]
   },
   {
-    t: "Para aprender un deporte o habilidad nueva, prefieres…",
+    t: "Para aprender algo nuevo como un deporte o una tarea manual, prefieres…",
     opts: [
-      {l:"Ver videos o demostraciones",c:"V"},
-      {l:"Que alguien te explique cada movimiento",c:"A"},
-      {l:"Lanzarte a intentarlo directamente",c:"K"}
+      {l:"Ver primero cómo se hace, en video o que alguien te muestre",c:"V"},
+      {l:"Que alguien te explique los pasos con palabras",c:"A"},
+      {l:"Intentarlo tú mismo aunque te equivoques al principio",c:"K"}
     ]
   },
   {
-    t: "Cuando resuelves un problema difícil, sueles…",
+    t: "Cuando algo en clases no te queda claro, normalmente…",
     opts: [
-      {l:"Dibujarlo o escribirlo en papel",c:"V"},
-      {l:"Pensar en voz alta o hablar con alguien",c:"A"},
-      {l:"Probar distintas soluciones con la práctica",c:"K"}
+      {l:"Buscas un dibujo, esquema o ejemplo visual",c:"V"},
+      {l:"Preguntas en voz alta o hablas con alguien para entender",c:"A"},
+      {l:"Intentas hacerlo tú mismo hasta que resulte",c:"K"}
     ]
   },
   {
-    t: "Tu forma de tomar apuntes en clases es…",
+    t: "Cuando tomas apuntes en clases, generalmente…",
     opts: [
-      {l:"Usar colores, destacadores y diagramas",c:"V"},
-      {l:"Escribir lo que dice el profesor textualmente",c:"A"},
-      {l:"Poca escritura, aprender haciendo",c:"K"}
+      {l:"Usas colores, dibujos o haces esquemas",c:"V"},
+      {l:"Escribes lo que dice el profesor con tus propias palabras",c:"A"},
+      {l:"Prefieres escuchar y hacer actividades en vez de escribir mucho",c:"K"}
     ]
   },
   {
-    t: "Cuando te aburres en clases, tiendes a…",
+    t: "Cuando te aburres o te distraes en clases, tiendes a…",
     opts: [
-      {l:"Dibujar o mirar por la ventana",c:"V"},
-      {l:"Hablar con un compañero o tararear",c:"A"},
-      {l:"Moverte, jugar con objetos o levantarte",c:"K"}
+      {l:"Ponerte a dibujar o quedarte mirando algo",c:"V"},
+      {l:"Hablar con un compañero o tararear algo",c:"A"},
+      {l:"Moverte, jugar con algo o querer levantarte",c:"K"}
     ]
   },
   {
-    t: "Cuando alguien te explica algo y no entiendes, pides que…",
+    t: "Si no entiendes una explicación, le pides al profesor que…",
     opts: [
-      {l:"Te lo muestre con un ejemplo visual",c:"V"},
-      {l:"Te lo explique de otra manera con palabras",c:"A"},
-      {l:"Te deje practicarlo tú mismo",c:"K"}
+      {l:"Te lo muestre con un dibujo o ejemplo visual",c:"V"},
+      {l:"Te lo explique de nuevo con otras palabras",c:"A"},
+      {l:"Te deje practicarlo o intentarlo tú mismo",c:"K"}
+    ]
+  },
+  {
+    t: "Cuando el profesor explica algo con un video o imagen, tú…",
+    opts: [
+      {l:"Prestas mucha atención y recuerdas bien lo que viste",c:"V"},
+      {l:"Prefieres que igual explique con palabras lo que muestra",c:"A"},
+      {l:"Te dan ganas de hacer algo relacionado con eso",c:"K"}
+    ]
+  },
+  {
+    t: "Cuando trabajas en grupo con tus compañeros, generalmente…",
+    opts: [
+      {l:"Eres el que anota, organiza o dibuja las ideas",c:"V"},
+      {l:"Eres el que habla, propone o explica las ideas en voz alta",c:"A"},
+      {l:"Eres el que hace, arma o prueba las cosas",c:"K"}
+    ]
+  },
+  {
+    t: "Cuando terminas de aprender algo nuevo en clases, sabes que lo entendiste porque…",
+    opts: [
+      {l:"Puedes imaginarlo o dibujarlo en tu mente",c:"V"},
+      {l:"Puedes explicárselo a alguien con tus propias palabras",c:"A"},
+      {l:"Sientes que podrías hacerlo o repetirlo tú solo",c:"K"}
     ]
   }
 ];
@@ -330,39 +354,33 @@ const INFO = {
     label:"Visual",
     chip:"cv",
     color:"var(--accent1)",
-    desc:"Aprendes mejor cuando la información se presenta de forma visual. Los mapas conceptuales, esquemas, colores y videos son tus aliados. Procesas el mundo a través de imágenes y recuerdas mejor lo que ves.",
+    desc:"Aprendes mejor cuando puedes ver las cosas. Los colores, los dibujos y los esquemas son tus mejores herramientas.",
     tips:[
-      "Usa mapas mentales y esquemas con colores.",
-      "Subraya y usa destacadores en diferentes tonos.",
-      "Convierte listas en diagramas o infografías.",
-      "Siéntate cerca del pizarrón o pantalla.",
-      "Agrega dibujos o íconos a tus apuntes."
+      "Para estudiar mejor, te recomiendo: haz esquemas o mapas con los contenidos de cada ramo.",
+      "Usa destacadores de distintos colores para organizar tus apuntes.",
+      "Convierte el texto en diagramas o líneas de tiempo."
     ]
   },
   A:{
     label:"Auditivo",
     chip:"ca",
     color:"var(--yellow)",
-    desc:"Aprendes mejor escuchando y hablando. Las explicaciones orales, los debates y las grabaciones son tu fuente principal de aprendizaje. Tienes buena memoria para lo que escuchas y procesas ideas hablando.",
+    desc:"Aprendes mejor escuchando y hablando. Entiendes más cuando alguien te explica o cuando tú mismo te lo explicas en voz alta.",
     tips:[
-      "Graba explicaciones y escúchalas después.",
-      "Lee en voz alta cuando estudias.",
-      "Forma grupos de estudio para debatir.",
-      "Explícale lo que aprendiste a alguien más.",
-      "Escucha música instrumental mientras estudias."
+      "Para estudiar mejor, te recomiendo: lee en voz alta cuando repases contenidos.",
+      "Graba con tu celular los puntos más importantes y escúchalos después.",
+      "Estudia con un compañero y explíquense los temas entre ustedes."
     ]
   },
   K:{
     label:"Kinestésico",
     chip:"ck",
     color:"var(--accent3)",
-    desc:"Aprendes mejor con la práctica y el movimiento. Necesitas experimentar, tocar y hacer para que el aprendizaje quede. Eres un aprendiz activo que retiene mejor cuando se involucra corporalmente.",
+    desc:"Aprendes mejor haciendo. Necesitas moverte, practicar y experimentar para que los contenidos queden contigo.",
     tips:[
-      "Haz ejercicios y actividades prácticas.",
-      "Toma descansos activos mientras estudias.",
-      "Usa tarjetas (flashcards) y manipúlalas.",
-      "Relaciona lo aprendido con experiencias reales.",
-      "Muévete mientras repasas (caminar y estudiar)."
+      "Para estudiar mejor, te recomiendo: haz ejercicios y problemas prácticos en vez de solo leer.",
+      "Toma descansos cortos cada 20-25 minutos para moverte.",
+      "Relaciona lo que estudias con cosas que has vivido o experimentado tú mismo."
     ]
   }
 };
