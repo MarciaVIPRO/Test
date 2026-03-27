@@ -485,19 +485,19 @@ function mostrarResultado(){
 
   el.scrollIntoView({behavior:'smooth'});
 
-  // Enviar datos a Google Sheets
+  // Enviar datos a Google Sheets via FormData (evita problemas CORS)
+  const formData = new FormData();
+  formData.append('nombre',      nombre);
+  formData.append('curso',       curso);
+  formData.append('visual',      cnt.V);
+  formData.append('auditivo',    cnt.A);
+  formData.append('kinestesico', cnt.K);
+  formData.append('resultado',   info.label);
+
   fetch(SHEETS_URL, {
     method: "POST",
     mode: "no-cors",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      nombre: nombre,
-      curso: curso,
-      visual: cnt.V,
-      auditivo: cnt.A,
-      kinestesico: cnt.K,
-      resultado: info.label
-    })
+    body: formData
   })
   .then(() => {
     document.getElementById('save-box').innerHTML =
